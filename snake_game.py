@@ -56,8 +56,9 @@ class FRUIT:
             cell_size,
             cell_size,
         )
+        screen.blit(apple, fruit_rect)
         # draw the rectangle on the screen
-        pygame.draw.rect(screen, (126, 166, 114), fruit_rect)
+        # pygame.draw.rect(screen, (126, 166, 114), fruit_rect)
 
     def randomize(self):
         self.x = random.randint(0, cell_number - 1)
@@ -115,6 +116,7 @@ cell_number = 20
 # currently the grid is 40x20
 screen = pygame.display.set_mode((cell_number * cell_size, cell_number * cell_size))
 clock = pygame.time.Clock()
+apple = pygame.image.load("graphics/apple.png").convert_alpha()
 
 main_game = MAIN()
 
