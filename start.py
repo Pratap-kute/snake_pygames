@@ -12,8 +12,8 @@ clock = pygame.time.Clock()  # Create a clock object to control the frame rate
 test_surface = pygame.Surface((100, 200))  # Surface object
 test_surface.fill(pygame.Color("blue"))
 
-# creating rectangle Rect(left, top, width, height)
-test_rect = pygame.Rect(100, 200, 100, 100)
+# Rect object to store the dimensions of the surface
+test_rect = test_surface.get_rect(center=(200, 250))
 while True:  # Infinite loop
     # The loop that will keep the game running
     for event in pygame.event.get():
@@ -29,9 +29,7 @@ while True:  # Infinite loop
     # using RGB colour scheme to screen
     screen.fill((175, 215, 70))
 
-    # drawing rectangle on screen
-    pygame.draw.rect(screen, (255, 0, 0), test_rect)  # drawing rectangle on screen
     # drawing Surface on screen which whole screen assign to game
-    screen.blit(test_surface, (200, 250))
+    screen.blit(test_surface, test_rect)
     pygame.display.update()  # Update the window
     clock.tick(60)  # Limit the frame rate to 60 frames per second
