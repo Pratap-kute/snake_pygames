@@ -2,73 +2,75 @@
 
 ## Table of Contents
 
-1. **Introduction**
-2. **Project Setup**
-   - **Dependencies**
-   - **Running the Game**
-3. **Game Objects**
-   - **SNAKE Class**
-     - **Constructor (`__init__`)**
-       - **Purpose:**
-         - Initializes snake segments, direction, image assets, and sound effect.
-       - **Key Lines:**
-         - `self.direction = Vector2(0, 0)`: Sets the initial direction to stationary.
-         - Image loading lines: Load necessary head, tail, and body images for visualization.
-       - **Why:**
-         - Establishes the starting state of the snake, allowing movement and visual representation.
-     - **`draw_snake` Function**
-       - **Purpose:**
-         - Draws the snake on the screen, handling dynamic head/tail graphics.
-       - **Key Lines:**
-         - `update_head_graphics()`: Selects the appropriate head image based on direction.
-         - `update_tail_graphics()`: Selects the appropriate tail image based on direction.
-         - `if index == 0:` ... `elif index == len(self.body) - 1:`: Draws head and tail using correct images.
-         - Conditional blocks for body segments: Handle various corner and straight body segments using correct images.
-       - **Why:**
-         - Ensures the snake appears visually correct based on its movement direction.
-           - Dynamic image selection enhances realism and clarity.
-     - **`move_snake` Function**
-       - **Purpose:**
-         - Updates the snake's position by modifying its `body` list.
-       - **Key Lines:**
-         - `if self.new_block:`: Handles snake growth after fruit consumption.
-         - `body_copy = self.body[:]`: Creates a copy of the `body` list for safe modification.
-         - `body_copy.insert(0, body_copy[0] + self.direction)`: Adds a new block in the current direction.
-         - `else:`: Handles standard movement without growth.
-       - **Why:**
-         - Implements the core movement logic, ensuring the snake's position changes smoothly while maintaining game rules.
-     - **`add_block` Function**
-       - **Purpose:**
-         - Adds a new block to the snake's tail after fruit consumption.
-       - **Key Lines:**
-         - `self.body.append(self.body[-1] + self.direction)`: Appends a new block at the tail, extending the snake.
-       - **Why:**
-         - Represents growth after the snake eats fruit, rewarding the player and making the game more challenging.
-     - **Other Functions:**
-       - `play_crunch_sound` plays the sound effect when the snake eats fruit.
-       - `reset` resets the snake's position and direction (e.g., for game restarts).
-   - **FRUIT Class**
-     - **Constructor (`__init__`)**
-       - **Purpose:**
-         - Initializes the fruit with a random position and loads its image asset.
-       - **Key Lines:**
-         - `self.randomize()`: Calls the `randomize` function to set a random position.
-         - `apple = pygame.image.load("graphics/apple.png").convert_alpha()`: Loads the apple image.
-       - **Why:**
-         - Creates the target for the snake, adding an element of randomness and visual representation.
-     - **`draw_fruit` Function**
-       - **Purpose:**
-         - Draws the fruit on the screen at its current position.
-       - **Key Lines:**
-         - `fruit_rect = pygame.Rect( ... )`: Creates a rectangle representing the fruit's position and size.
-         - `screen.blit(apple, fruit_rect)`: Draws the apple image onto the rectangle.
-       - **Why:**
-         - Visualizes the fruit on the screen, making it clear where the snake needs to go.
-     - **`randomize` Function**
-       - **Purpose:**
-         - Moves the fruit to a new random position within the grid.
-       - **Key Lines:**
-         - `self.x = random.randint(0, cell_number - 1)`: Randomly chooses an X-coordinate.
+1. [**Introduction**](#introduction)
+2. [**Project Setup**](#project-setup)
+   - [**Dependencies**](#dependencies)
+   - [**Running the Game**](#running-the-game)
+3. [**Game Objects**](#game-objects)
+
+- [**SNAKE Class**](#snake-class)
+- **Constructor (`__init__`)**
+  - **Purpose:**
+    - Initializes snake segments, direction, image assets, and sound effect.
+  - **Key Lines:**
+    - `self.direction = Vector2(0, 0)`: Sets the initial direction to stationary.
+    - Image loading lines: Load necessary head, tail, and body images for visualization.
+  - **Why:**
+    - Establishes the starting state of the snake, allowing movement and visual representation.
+- **`draw_snake` Function**
+  - **Purpose:**
+    - Draws the snake on the screen, handling dynamic head/tail graphics.
+  - **Key Lines:**
+    - `update_head_graphics()`: Selects the appropriate head image based on direction.
+    - `update_tail_graphics()`: Selects the appropriate tail image based on direction.
+    - `if index == 0:` ... `elif index == len(self.body) - 1:`: Draws head and tail using correct images.
+    - Conditional blocks for body segments: Handle various corner and straight body segments using correct images.
+  - **Why:**
+    - Ensures the snake appears visually correct based on its movement direction.
+      - Dynamic image selection enhances realism and clarity.
+- **`move_snake` Function**
+  - **Purpose:**
+    - Updates the snake's position by modifying its `body` list.
+  - **Key Lines:**
+    - `if self.new_block:`: Handles snake growth after fruit consumption.
+    - `body_copy = self.body[:]`: Creates a copy of the `body` list for safe modification.
+    - `body_copy.insert(0, body_copy[0] + self.direction)`: Adds a new block in the current direction.
+    - `else:`: Handles standard movement without growth.
+  - **Why:**
+    - Implements the core movement logic, ensuring the snake's position changes smoothly while maintaining game rules.
+- **`add_block` Function**
+  - **Purpose:**
+    - Adds a new block to the snake's tail after fruit consumption.
+  - **Key Lines:**
+    - `self.body.append(self.body[-1] + self.direction)`: Appends a new block at the tail, extending the snake.
+  - **Why:**
+    - Represents growth after the snake eats fruit, rewarding the player and making the game more challenging.
+- **Other Functions:**
+  - `play_crunch_sound` plays the sound effect when the snake eats fruit.
+  - `reset` resets the snake's position and direction (e.g., for game restarts).
+- [**FRUIT Class**](#fruit-class)
+  - **Constructor (`__init__`)**
+    - **Purpose:**
+      - Initializes the fruit with a random position and loads its image asset.
+    - **Key Lines:**
+      - `self.randomize()`: Calls the `randomize` function to set a random position.
+      - `apple = pygame.image.load("graphics/apple.png").convert_alpha()`: Loads the apple image.
+    - **Why:**
+      - Creates the target for the snake, adding an element of randomness and visual representation.
+  - **`draw_fruit` Function**
+    - **Purpose:**
+      - Draws the fruit on the screen at its current position.
+    - **Key Lines:**
+      - `fruit_rect = pygame.Rect( ... )`: Creates a rectangle representing the fruit's position and size.
+      - `screen.blit(apple, fruit_rect)`: Draws the apple image onto the rectangle.
+    - **Why:**
+      - Visualizes the fruit on the screen, making it clear where the snake needs to go.
+  - **`randomize` Function**
+    - **Purpose:**
+      - Moves the fruit to a new random position within the grid.
+    - **Key Lines:**
+      - `self.x = random.randint(0, cell_number - 1)`: Randomly chooses an X-coordinate.
+
 4. **Gameplay Mechanics**
    - **Snake Movement**
    - **Fruit Consumption and Growth**
