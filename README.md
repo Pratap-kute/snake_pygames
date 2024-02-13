@@ -103,48 +103,59 @@ This Python code for a classic Snake game, providing detailed descriptions of ea
 
 ## Game Objects
 
-### SNAKE Class
+**SNAKE Class:**
 
-- Represents the snake in the game.
-- `__init__` initializes:
-  - `body`: Initial snake segments and direction.
-  - `new_block`: Flag for adding a new block after fruit consumption.
-  - Snake head and tail image assets.
-  - Snake body image assets for various orientations.
-  - Sound effect for fruit consumption.
-- `draw_snake` draws the snake on the screen based on its `body` and updates head/tail graphics.
-  - `update_head_graphics` and `update_tail_graphics` handle dynamic head/tail image selection based on direction.
-- `move_snake` updates the snake's position by modifying its `body` list.
-- `add_block` adds a new block to the snake's tail upon fruit consumption.
-- `play_crunch_sound` plays the sound effect when the snake eats fruit.
-- `reset` resets the snake's position and direction.
+- **`__init__`:**
+  - Initializes the snake's initial position, direction, and body segments.
+  - Loads visual assets for snake head, tail, and body segments.
+  - Tracks snake length and a flag for adding a new block after fruit consumption.
+- **`draw_snake`:**
+  - Iterates through snake segments, selecting appropriate image assets based on segment position and direction.
+  - Updates head and tail graphics dynamically to reflect changing directions.
+- **`move_snake`:**
+  - Appends a new head segment in the current direction, effectively moving the snake.
+  - Removes the last tail segment if the `new_block` flag is not set (no growth after fruit).
+  - Handles edge cases (e.g., snake wrapping around the screen) as needed.
+- **`add_block`:**
+  - Appends a new block to the snake's tail, implementing growth after fruit consumption.
+- **`play_crunch_sound`:**
+  - Plays a sound effect when the snake eats fruit, enhancing the immersive experience.
+- **`reset`:**
+  - Resets the snake's position, direction, and length to start values.
 
-### FRUIT Class
+**FRUIT Class:**
 
-- Represents the fruit that the snake eats.
-- `__init__` initializes:
-  - Randomizes the initial `position` of the fruit within the game grid.
-  - Loads the fruit image asset.
-- `draw_fruit` draws the fruit on the screen at its current `position`.
-- `randomize` moves the fruit to a new random position within the grid.
+- **`__init__`:**
+  - Randomly initializes the fruit's position within the game grid.
+  - Loads the fruit's image asset.
+- **`draw_fruit`:**
+  - Draws the fruit image at its current position on the screen.
+- **`randomize`:**
+  - Chooses a new random position for the fruit within the grid, ensuring it doesn't overlap with the snake.
 
-### MAIN Class
+**MAIN Class:**
 
-- Manages the overall game logic and interaction.
-- `__init__` creates instances of the `SNAKE` and `FRUIT` classes.
-- `update` handles game updates:
+- **`__init__`:**
+  - Creates instances of the `SNAKE` and `FRUIT` classes, setting up the game objects.
+- **`update`:**
   - Calls `move_snake` to update the snake's position.
-  - Calls `check_collision` to check for fruit and snake collisions.
-  - Calls `check_fail` to check for game-over conditions.
-- `draw_elements` draws the game elements:
-  - Calls `draw_grass` to draw the background grass.
+  - Calls `check_collision` to detect collisions with the fruit or the snake's body.
+  - Calls `check_fail` to assess game over conditions.
+  - Updates the score if the snake eats fruit.
+- **`draw_elements`:**
+  - Calls `draw_grass` to draw the background.
   - Calls `draw_fruit` to draw the fruit.
   - Calls `draw_snake` to draw the snake.
-  - Calls `draw_score` to draw the current score.
-- `check_collision` handles both fruit and snake collision scenarios:
-  - Upon fruit collision:
-    - Calls `randomize` to move the fruit.
-    - Calls `add_block` to grow
+  - Calls `draw_score` to display the current score.
+- **`check_collision`:**
+  - Detects collisions between the snake's head and the fruit (growth trigger).
+  - Detects collisions between the snake's head and its own body (game over).
+- **`check_fail`:**
+  - Determines if the game should end based on specific conditions (e.g., reaching edge of screen).
+- **`game_over`:**
+  - Displays a game over message and handles any necessary end-of-game actions.
+- **`draw_grass`:**
+  - Draws the grassy background for visual appeal.
 
 ## Deep Dive into Challenging Game Logic
 
