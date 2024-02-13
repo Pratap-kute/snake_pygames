@@ -80,9 +80,6 @@
    - **Efficient Collision Detection:**
      - Fruit Consumption Detection
      - Self-Collision Detection
-   - **Optimizations and Trade-offs**
-     - Performance Considerations
-     - Balancing Visual Fidelity and Accuracy
 
 ## Introduction
 
@@ -177,14 +174,3 @@ This Python code for a classic Snake game, providing detailed descriptions of ea
 - **Self-Collision:**
   - Iterating through body segments and comparing their positions with the head's position is necessary.
   - Any overlap signifies a collision, leading to game over.
-
-### 5.3 Optimizations and Trade-offs
-
-- **Performance:**
-  - Collision detection can be computationally expensive. Consider optimizing by:
-    - Using more efficient data structures (e.g., spatial partitions) for faster lookups.
-    - Minimizing unnecessary comparisons.
-  - Balance performance with accuracy; don't compromise core mechanics.
-- **Visual Fidelity:**
-  - More image assets for smoother corner transitions can enhance appearance.
-  - Balancing this with performance and memory overhead is crucial.
